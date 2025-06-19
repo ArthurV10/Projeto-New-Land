@@ -16,8 +16,8 @@ class DataManager {
         status: "stopped",
         oilType: "5w30",
         currentAmount: 0.0,
-        boundOSList: [], // Sem OS vinculadas
-        activeOS: null, // Sem OS ativa
+        boundOSList: [],
+        activeOS: null,
         isPaused: false,
       },
       {
@@ -91,8 +91,8 @@ class DataManager {
         client: "João Silva",
         oilType: "5w30",
         quantity: 4.5,
-        status: "pending", // Todas pendentes
-        boundMeter: null, // Sem medidor vinculado
+        status: "pending",
+        boundMeter: null,
         isCompleted: false,
         isActive: false,
       },
@@ -151,22 +151,11 @@ class DataManager {
         isCompleted: false,
         isActive: false,
       },
-      {
-        id: "OS487765",
-        vehicle: "Camry Hybrid 2024",
-        client: "Roberto Silva",
-        oilType: "5w30",
-        quantity: 4.3,
-        status: "pending",
-        boundMeter: null,
-        isCompleted: false,
-        isActive: false,
-      },
     ]
   }
 
   initializeBindings() {
-    return [] // Array vazio - sem vinculações iniciais
+    return []
   }
 
   initializeHistory() {
@@ -174,7 +163,7 @@ class DataManager {
       {
         timestamp: new Date("2025-06-19T09:15:33"),
         event: "System Started",
-        detail: "Fuel management system initialized - All OS set to pending status",
+        detail: "Fuel management system initialized",
         device: "System",
       },
     ]
@@ -192,7 +181,6 @@ class DataManager {
   deleteWorkOrder(osId) {
     const index = this.workOrders.findIndex((os) => os.id === osId)
     if (index !== -1) {
-      // Remove vinculação se existir
       this.unbindWorkOrder(osId)
       this.workOrders.splice(index, 1)
       this.addToHistory("OS Deleted", `OS ${osId} deleted from system`, "System")
@@ -210,7 +198,7 @@ class DataManager {
     return this.meters
   }
 
-  // Métodos para gerenciar vinculações múltiplas
+  // Métodos para gerenciar vinculações
   bindWorkOrder(meterId, osId) {
     const workOrder = this.getWorkOrder(osId)
     if (!workOrder) {
@@ -218,12 +206,11 @@ class DataManager {
     }
 
     if (workOrder.isCompleted) {
-      return { success: false, message: "OS já foi concluída e não pode ser vinculada novamente" }
+      return { success: false, message: "OS já foi concluída" }
     }
 
-    // Verifica se a OS já está vinculada a outro medidor
-    const existingOSBinding = this.bindings.find((b) => b.osId === osId && b.status === "active")
-    if (existingOSBinding) {
+    const existingBinding = this.bindings.find((b) => b.osId === osId && b.status === "active")
+    if (existingBinding) {
       return { success: false, message: "OS já está vinculada a outro medidor" }
     }
 
@@ -232,7 +219,6 @@ class DataManager {
       return { success: false, message: "Medidor está em manutenção" }
     }
 
-    // Cria nova vinculação
     const binding = {
       meterId: meterId,
       osId: osId,
@@ -242,19 +228,16 @@ class DataManager {
 
     this.bindings.push(binding)
 
-    // Atualiza medidor - adiciona à lista de OS
     if (meter) {
       if (!meter.boundOSList.includes(osId)) {
         meter.boundOSList.push(osId)
       }
-      // Se não há OS ativa, define esta como ativa
       if (!meter.activeOS) {
         meter.activeOS = osId
         workOrder.isActive = true
       }
     }
 
-    // Atualiza OS
     if (workOrder) {
       workOrder.boundMeter = `MEDIDOR ${meterId.toString().padStart(2, "0")}`
       workOrder.status = "in-progress"
@@ -271,19 +254,14 @@ class DataManager {
       binding.status = "inactive"
       binding.unbindDate = new Date()
 
-      // Atualiza medidor
       const meter = this.getMeter(binding.meterId)
       if (meter) {
-        // Remove da lista de OS
         meter.boundOSList = meter.boundOSList.filter((id) => id !== osId)
-
-        // Se era a OS ativa, define outra como ativa ou null
         if (meter.activeOS === osId) {
           meter.activeOS = meter.boundOSList.length > 0 ? meter.boundOSList[0] : null
         }
       }
 
-      // Atualiza OS
       const workOrder = this.getWorkOrder(osId)
       if (workOrder) {
         workOrder.boundMeter = null
@@ -302,7 +280,6 @@ class DataManager {
     return { success: false, message: "Vinculação não encontrada" }
   }
 
-  // Método para trocar OS ativa
   switchActiveOS(meterId, osId) {
     const meter = this.getMeter(meterId)
     if (!meter) {
@@ -317,7 +294,6 @@ class DataManager {
       return { success: false, message: "Não é possível trocar OS durante dispensação" }
     }
 
-    // Desativa OS atual
     if (meter.activeOS) {
       const currentOS = this.getWorkOrder(meter.activeOS)
       if (currentOS) {
@@ -325,7 +301,6 @@ class DataManager {
       }
     }
 
-    // Ativa nova OS
     meter.activeOS = osId
     const newOS = this.getWorkOrder(osId)
     if (newOS) {
@@ -422,32 +397,25 @@ class DataManager {
       return { success: false, message: "OS não encontrada" }
     }
 
-    // Marca como concluída
     workOrder.status = "completed"
     workOrder.isCompleted = true
     workOrder.isActive = false
 
-    // Adiciona ao histórico
     this.addToHistory(
       "Dispense Completed",
       `Completed OS ${workOrder.id}, ${workOrder.quantity}L dispensed`,
       meter.name,
     )
 
-    // Remove a vinculação da OS concluída
     const binding = this.bindings.find((b) => b.osId === meter.activeOS && b.status === "active")
     if (binding) {
       binding.status = "inactive"
       binding.unbindDate = new Date()
     }
 
-    // Remove da lista de OS do medidor
     meter.boundOSList = meter.boundOSList.filter((id) => id !== meter.activeOS)
-
-    // Define próxima OS ativa ou null
     meter.activeOS = meter.boundOSList.length > 0 ? meter.boundOSList[0] : null
 
-    // Se há próxima OS, ativa ela
     if (meter.activeOS) {
       const nextOS = this.getWorkOrder(meter.activeOS)
       if (nextOS) {
@@ -455,7 +423,6 @@ class DataManager {
       }
     }
 
-    // Reinicia o medidor para nova operação
     meter.status = "stopped"
     meter.isPaused = false
     meter.currentAmount = 0.0
@@ -530,7 +497,35 @@ class DataManager {
   getLatestReport() {
     return this.reports[this.reports.length - 1] || null
   }
+
+  // Método para criar e vincular OS de teste rapidamente
+  createTestOS(meterId) {
+    const testOS = {
+      id: `TEST${Date.now()}`,
+      vehicle: "Veículo de Teste",
+      client: "Cliente Teste",
+      oilType: "5w30",
+      quantity: 5.0,
+      status: "pending",
+      boundMeter: null,
+      isCompleted: false,
+      isActive: false,
+    }
+
+    this.workOrders.push(testOS)
+    return this.bindWorkOrder(meterId, testOS.id)
+  }
+
+  // Método para vincular primeira OS disponível a um medidor
+  bindFirstAvailableOS(meterId) {
+    const availableOS = this.workOrders.find((os) => os.status === "pending" && !os.isCompleted && !os.boundMeter)
+
+    if (availableOS) {
+      return this.bindWorkOrder(meterId, availableOS.id)
+    }
+
+    return { success: false, message: "Nenhuma OS disponível" }
+  }
 }
 
-// Instância global do gerenciador de dados
-window.dataManager = new DataManager()
+window.DataManager = DataManager

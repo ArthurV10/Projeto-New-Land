@@ -3,21 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="./asset/logo_toyota.png" type="image/x-icon">
     <title>Toyota New Land - Sistema de Combustível</title>
+
+    <link rel="icon" href="./asset/logo_toyota.png" type="image/x-icon">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            
-            <h1>
-                <img src="asset/logo_toyota.png" style="width: 10%;">
-                TOYOTA NEW LAND</h1>
-            <div class="header-info">
-                <span>Matrix System</span>
-                <span id="current-time">19/06/2025, 09:35:08</span>
+            <div class="header-left">
+                <div class="logo-container">
+                    <img src="./asset/logo_toyota.png" alt="Logo Toyota" style="width: 10%;">
+                    <h1 class="company-name">TOYOTA NEW LAND</h1>
+                </div>
+            </div>
+            <div class="header-center">
+                <span class="system-name">Matrix System</span>
+            </div>
+            <div class="header-right">
+                <div class="header-info">
+                    <span class="current-time" id="current-time">19/06/2025, 09:35:08</span>
+                </div>
+                <div class="header-controls">
+                    <button class="btn btn-outline btn-sm" onclick="modalManager.showBindingsTable()">
+                        <i class="fas fa-link"></i> Vinculações
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="modalManager.showReport()">
+                        <i class="fas fa-chart-pie"></i> Relatório
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -25,20 +50,17 @@
     <div class="main-container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <!-- Tank Info -->
             <div class="tank-card">
                 <div class="tank-content">
-                    <div class="tank-icon">💧</div>
+                    <i class="fas fa-droplet tank-icon"></i>
                     <span class="tank-label">Tanque</span>
                     <div class="tank-level">85%</div>
                 </div>
             </div>
-
-            <!-- Meters List -->
             <div class="meters-list">
-                <button class="meter-item active">
+                <button class="meter-item active" data-meter="1">
                     <div class="meter-content">
-                        <div class="meter-icon">⛽</div>
+                        <i class="fas fa-gas-pump meter-icon"></i>
                         <div class="meter-info">
                             <div class="meter-name">MEDIDOR 01</div>
                             <div class="meter-status-text">Parado</div>
@@ -46,10 +68,9 @@
                         <div class="status-dot stopped"></div>
                     </div>
                 </button>
-
-                <button class="meter-item">
+                <button class="meter-item" data-meter="2">
                     <div class="meter-content">
-                        <div class="meter-icon">⛽</div>
+                        <i class="fas fa-gas-pump meter-icon"></i>
                         <div class="meter-info">
                             <div class="meter-name">MEDIDOR 02</div>
                             <div class="meter-status-text">Parado</div>
@@ -57,10 +78,9 @@
                         <div class="status-dot stopped"></div>
                     </div>
                 </button>
-
-                <button class="meter-item">
-                    <div class="meter-content">
-                        <div class="meter-icon">⛽</div>
+                <button class="meter-item" data-meter="3">
+                     <div class="meter-content">
+                        <i class="fas fa-gas-pump meter-icon"></i>
                         <div class="meter-info">
                             <div class="meter-name">MEDIDOR 03</div>
                             <div class="meter-status-text">Parado</div>
@@ -68,10 +88,9 @@
                         <div class="status-dot stopped"></div>
                     </div>
                 </button>
-
-                <button class="meter-item">
-                    <div class="meter-content">
-                        <div class="meter-icon">⛽</div>
+                <button class="meter-item" data-meter="4">
+                     <div class="meter-content">
+                        <i class="fas fa-gas-pump meter-icon"></i>
                         <div class="meter-info">
                             <div class="meter-name">MEDIDOR 04</div>
                             <div class="meter-status-text">Parado</div>
@@ -79,10 +98,9 @@
                         <div class="status-dot stopped"></div>
                     </div>
                 </button>
-
-                <button class="meter-item">
-                    <div class="meter-content">
-                        <div class="meter-icon">⛽</div>
+                <button class="meter-item" data-meter="5">
+                     <div class="meter-content">
+                        <i class="fas fa-gas-pump meter-icon"></i>
                         <div class="meter-info">
                             <div class="meter-name">MEDIDOR 05</div>
                             <div class="meter-status-text">Parado</div>
@@ -90,10 +108,9 @@
                         <div class="status-dot stopped"></div>
                     </div>
                 </button>
-
-                <button class="meter-item">
-                    <div class="meter-content">
-                        <div class="meter-icon">⛽</div>
+                <button class="meter-item" data-meter="6">
+                     <div class="meter-content">
+                        <i class="fas fa-gas-pump meter-icon"></i>
                         <div class="meter-info">
                             <div class="meter-name">MEDIDOR 06</div>
                             <div class="meter-status-text">Parado</div>
@@ -101,10 +118,9 @@
                         <div class="status-dot stopped"></div>
                     </div>
                 </button>
-
-                <button class="meter-item">
+                <button class="meter-item" data-meter="7">
                     <div class="meter-content">
-                        <div class="meter-icon">⛽</div>
+                        <i class="fas fa-gas-pump meter-icon"></i>
                         <div class="meter-info">
                             <div class="meter-name">MEDIDOR 07</div>
                             <div class="meter-status-text">Manutenção</div>
@@ -118,15 +134,14 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Meter Details Panel -->
-            <div class="meter-details">
+            <div class="meter-details-panel">
                 <div class="meter-card">
                     <div class="card-header">
                         <h2 class="card-title">
-                            <span class="gauge-icon">⚡</span>
+                            <i class="fas fa-tachometer-alt"></i> 
                             MEDIDOR 01 - 5w30
                         </h2>
                     </div>
-                    
                     <div class="card-content">
                         <div class="meter-display">
                             <div class="amount-display">
@@ -135,41 +150,24 @@
                             </div>
                             <div class="status-badge stopped">Parado</div>
                         </div>
-
                         <div class="meter-info-section">
                             <div class="info-row">
                                 <span class="info-label">Status:</span>
                                 <span class="info-value">Stopped; Ready for operation</span>
                             </div>
                             <div class="info-row">
-                                <span class="info-label">Preset Amount:</span>
-                                <span class="info-value">1 Liters</span>
-                            </div>
-                            <div class="info-row">
                                 <span class="info-label">Work Order:</span>
-                                <span class="info-value">OS 487759 - João Silva</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">Job Code:</span>
-                                <span class="info-value">Corolla XEI 2023 - 5w30</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">Required:</span>
-                                <span class="info-value">4.5L necessários</span>
+                                <span class="info-value">Nenhuma OS vinculada</span>
                             </div>
                             <div class="info-row">
                                 <span class="info-label">Progresso:</span>
                                 <span class="info-value progress">0.0%</span>
                             </div>
                         </div>
-
                         <div class="control-buttons">
-                            <button class="btn btn-primary">
-                                <span class="btn-icon">▶</span>
-                                Iniciar Dispensa
-                            </button>
                             <button class="btn btn-secondary" disabled>
-                                Pausar Dispensa
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Nenhuma OS Vinculada
                             </button>
                         </div>
                     </div>
@@ -181,139 +179,14 @@
                 <div class="realtime-card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <span class="fuel-icon">⛽</span>
-                            Monitoramento em Tempo Real
+                            <i class="fas fa-wave-square"></i> 
+                            Monitoramento Tempo Real
                         </h3>
                     </div>
-                    
                     <div class="card-content">
-                        <div class="realtime-list">
-    <!-- Medidor 01 -->
-    <div class="realtime-item">
-        <div class="realtime-header">
-            <div class="realtime-meter-name">
-                <div class="status-dot stopped"></div>
-                <span>MEDIDOR 01</span>
-            </div>
-            <div class="realtime-status stopped">Parado</div>
-        </div>
-        
-        <div class="no-os">Nenhuma OS vinculada</div>
-        
-        <div class="realtime-amount">
-            <div class="realtime-amount-value">0.00 L</div>
-            <div class="realtime-amount-status">Aguardando</div>
-        </div>
-    </div>
-
-    <!-- Medidor 02 -->
-    <div class="realtime-item">
-        <div class="realtime-header">
-            <div class="realtime-meter-name">
-                <div class="status-dot stopped"></div>
-                <span>MEDIDOR 02</span>
-            </div>
-            <div class="realtime-status stopped">Parado</div>
-        </div>
-        
-        <div class="no-os">Nenhuma OS vinculada</div>
-        
-        <div class="realtime-amount">
-            <div class="realtime-amount-value">0.00 L</div>
-            <div class="realtime-amount-status">Aguardando</div>
-        </div>
-    </div>
-
-    <!-- Medidor 03 -->
-    <div class="realtime-item">
-        <div class="realtime-header">
-            <div class="realtime-meter-name">
-                <div class="status-dot stopped"></div>
-                <span>MEDIDOR 03</span>
-            </div>
-            <div class="realtime-status stopped">Parado</div>
-        </div>
-        
-        <div class="no-os">Nenhuma OS vinculada</div>
-        
-        <div class="realtime-amount">
-            <div class="realtime-amount-value">0.00 L</div>
-            <div class="realtime-amount-status">Aguardando</div>
-        </div>
-    </div>
-
-    <!-- Medidor 04 -->
-    <div class="realtime-item">
-        <div class="realtime-header">
-            <div class="realtime-meter-name">
-                <div class="status-dot stopped"></div>
-                <span>MEDIDOR 04</span>
-            </div>
-            <div class="realtime-status stopped">Parado</div>
-        </div>
-        
-        <div class="no-os">Nenhuma OS vinculada</div>
-        
-        <div class="realtime-amount">
-            <div class="realtime-amount-value">0.00 L</div>
-            <div class="realtime-amount-status">Aguardando</div>
-        </div>
-    </div>
-
-    <!-- Medidor 05 -->
-    <div class="realtime-item">
-        <div class="realtime-header">
-            <div class="realtime-meter-name">
-                <div class="status-dot stopped"></div>
-                <span>MEDIDOR 05</span>
-            </div>
-            <div class="realtime-status stopped">Parado</div>
-        </div>
-        
-        <div class="no-os">Nenhuma OS vinculada</div>
-        
-        <div class="realtime-amount">
-            <div class="realtime-amount-value">0.00 L</div>
-            <div class="realtime-amount-status">Aguardando</div>
-        </div>
-    </div>
-
-    <!-- Medidor 06 -->
-    <div class="realtime-item">
-        <div class="realtime-header">
-            <div class="realtime-meter-name">
-                <div class="status-dot stopped"></div>
-                <span>MEDIDOR 06</span>
-            </div>
-            <div class="realtime-status stopped">Parado</div>
-        </div>
-        
-        <div class="no-os">Nenhuma OS vinculada</div>
-        
-        <div class="realtime-amount">
-            <div class="realtime-amount-value">0.00 L</div>
-            <div class="realtime-amount-status">Aguardando</div>
-        </div>
-    </div>
-
-    <!-- Medidor 07 -->
-    <div class="realtime-item">
-        <div class="realtime-header">
-            <div class="realtime-meter-name">
-                <div class="status-dot maintenance"></div>
-                <span>MEDIDOR 07</span>
-            </div>
-            <div class="realtime-status maintenance">Manutenção</div>
-        </div>
-        
-        <div class="no-os">Nenhuma OS vinculada</div>
-        
-        <div class="realtime-amount">
-            <div class="realtime-amount-value">0.00 L</div>
-            <div class="realtime-amount-status">Aguardando</div>
-        </div>
-    </div>
-</div>
+                        <div class="realtime-list" id="realtime-list">
+                            <!-- Items will be populated by JavaScript -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -323,113 +196,26 @@
                 <div class="os-card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <span class="file-icon">📄</span>
+                            <i class="fas fa-file-invoice"></i> 
                             Ordens de Serviço
                         </h3>
                     </div>
-                    
                     <div class="card-content">
                         <div class="os-filters">
-                            <select class="filter-select">
+                            <select class="filter-select" id="os-filter">
                                 <option value="all">Todas as OS</option>
                                 <option value="pending">Pendentes</option>
                                 <option value="in-progress">Em Andamento</option>
                                 <option value="completed">Concluídas</option>
                             </select>
                         </div>
-
-                        <div class="os-list">
-                            <!-- OS 1 - Vinculada -->
-                            <div class="os-item in-progress">
-                                <div class="os-header">
-                                    <span class="os-number">OS 487759</span>
-                                    <span class="os-status in-progress">Em Andamento</span>
-                                </div>
-                                <div class="os-info">
-                                    <div><strong>Veículo:</strong> Corolla XEI 2023</div>
-                                    <div><strong>Cliente:</strong> João Silva</div>
-                                    <div><strong>Óleo:</strong> 5w30</div>
-                                    <div class="os-amount"><strong>Quantidade:</strong> 4.5L</div>
-                                    <div><strong>Medidor:</strong> MEDIDOR_01</div>
-                                </div>
-                            </div>
-
-                            <!-- OS 2 - Pendente -->
-                            <div class="os-item pending">
-                                <div class="os-header">
-                                    <span class="os-number">OS 487760</span>
-                                    <span class="os-status pending">Pendente</span>
-                                </div>
-                                <div class="os-info">
-                                    <div><strong>Veículo:</strong> Hilux SR 2022</div>
-                                    <div><strong>Cliente:</strong> Maria Santos</div>
-                                    <div><strong>Óleo:</strong> 5w30</div>
-                                    <div class="os-amount"><strong>Quantidade:</strong> 6.0L</div>
-                                </div>
-                            </div>
-
-                            <!-- OS 3 - Pendente -->
-                            <div class="os-item pending">
-                                <div class="os-header">
-                                    <span class="os-number">OS 487761</span>
-                                    <span class="os-status pending">Pendente</span>
-                                </div>
-                                <div class="os-info">
-                                    <div><strong>Veículo:</strong> Etios HB 2021</div>
-                                    <div><strong>Cliente:</strong> Pedro Costa</div>
-                                    <div><strong>Óleo:</strong> 5w30</div>
-                                    <div class="os-amount"><strong>Quantidade:</strong> 3.8L</div>
-                                </div>
-                            </div>
-
-                            <!-- OS 4 - Pendente -->
-                            <div class="os-item pending">
-                                <div class="os-header">
-                                    <span class="os-number">OS 487762</span>
-                                    <span class="os-status pending">Pendente</span>
-                                </div>
-                                <div class="os-info">
-                                    <div><strong>Veículo:</strong> Camry XLE 2023</div>
-                                    <div><strong>Cliente:</strong> Ana Lima</div>
-                                    <div><strong>Óleo:</strong> 5w30</div>
-                                    <div class="os-amount"><strong>Quantidade:</strong> 4.2L</div>
-                                </div>
-                            </div>
-
-                            <!-- OS 5 - Em Andamento (Dispensando) -->
-                            <div class="os-item in-progress">
-                                <div class="os-header">
-                                    <span class="os-number">OS 487763</span>
-                                    <span class="os-status in-progress">Em Andamento</span>
-                                </div>
-                                <div class="os-info">
-                                    <div><strong>Veículo:</strong> RAV4 Hybrid 2024</div>
-                                    <div><strong>Cliente:</strong> Carlos Mendes</div>
-                                    <div><strong>Óleo:</strong> 5w30</div>
-                                    <div class="os-amount"><strong>Quantidade:</strong> 4.8L</div>
-                                    <div><strong>Medidor:</strong> MEDIDOR_05</div>
-                                </div>
-                            </div>
-
-                            <!-- OS 6 - Pendente -->
-                            <div class="os-item pending">
-                                <div class="os-header">
-                                    <span class="os-number">OS 487764</span>
-                                    <span class="os-status pending">Pendente</span>
-                                </div>
-                                <div class="os-info">
-                                    <div><strong>Veículo:</strong> Prius 2023</div>
-                                    <div><strong>Cliente:</strong> Fernanda Oliveira</div>
-                                    <div><strong>Óleo:</strong> 5w30</div>
-                                    <div class="os-amount"><strong>Quantidade:</strong> 3.9L</div>
-                                </div>
-                            </div>
+                        <div class="os-list" id="os-list">
+                            <!-- Items will be populated by JavaScript -->
                         </div>
-
                         <div class="history-section">
-                            <button class="btn btn-outline">
-                                <span class="btn-icon">📊</span>
-                                Ver Histórico Completo
+                            <button class="btn btn-outline btn-sm" onclick="uiManager.showHistoryModal()">
+                                <i class="fas fa-clock-rotate-left"></i> 
+                                Ver Histórico
                             </button>
                         </div>
                     </div>
@@ -438,89 +224,11 @@
         </main>
     </div>
 
-    <!-- OS Assignment Modal (Hidden by default) -->
-    <div id="os-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Vincular OS ao Medidor</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="os-details">
-                    <h4>OS 487760</h4>
-                    <p><strong>Veículo:</strong> Hilux SR 2022</p>
-                    <p><strong>Cliente:</strong> Maria Santos</p>
-                    <p><strong>Tipo de Óleo:</strong> 5w30</p>
-                    <p><strong>Quantidade:</strong> 6.0L</p>
-                    <p><strong>Status:</strong> Pendente</p>
-                    <p><strong>Medidor Selecionado:</strong> MEDIDOR_01</p>
-                </div>
-                <div class="modal-buttons">
-                    <button class="btn btn-secondary">Cancelar</button>
-                    <button class="btn btn-danger">Deletar OS</button>
-                    <button class="btn btn-primary">Vincular OS</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- History Modal (Hidden by default) -->
-    <div id="history-modal" class="modal" style="display: none;">
-        <div class="modal-content history-modal">
-            <div class="modal-header">
-                <h3>
-                    <span class="clock-icon">🕒</span>
-                    Histórico Completo de Dispensas
-                </h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="history-table-container">
-                    <table class="history-table">
-                        <thead>
-                            <tr>
-                                <th>Timestamp</th>
-                                <th>Event</th>
-                                <th>Detail</th>
-                                <th>Device</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Jun 19, 2025, 09:30:15 AM</td>
-                                <td><span class="event-started">Dispense Started</span></td>
-                                <td>OS 487763, 0.00 Liters 5w30</td>
-                                <td>MEDIDOR 05</td>
-                            </tr>
-                            <tr class="even">
-                                <td>Jun 19, 2025, 09:25:42 AM</td>
-                                <td><span class="event-inserted">OS Assigned</span></td>
-                                <td>OS 487763 assigned to MEDIDOR_05</td>
-                                <td>System</td>
-                            </tr>
-                            <tr>
-                                <td>Jun 19, 2025, 09:20:18 AM</td>
-                                <td><span class="event-inserted">OS Assigned</span></td>
-                                <td>OS 487759 assigned to MEDIDOR_01</td>
-                                <td>System</td>
-                            </tr>
-                            <tr class="even">
-                                <td>Jun 19, 2025, 09:15:33 AM</td>
-                                <td><span class="event-completed">System Started</span></td>
-                                <td>Fuel management system initialized</td>
-                                <td>System</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts JavaScript - Carregados na ordem correta -->
-    <script src="scripts/data-manager.js"></script>
-    <script src="scripts/modal-manager.js"></script>
-    <script src="scripts/ui-manager.js"></script>
-    <script src="scripts/main.js"></script>
+    <!-- Modals will be created by JavaScript -->
+    
+    <script src="./scripts/data-manager.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/modal-manager.js"></script>
+    <script src="./scripts/ui-manager.js"></script>
 </body>
 </html>

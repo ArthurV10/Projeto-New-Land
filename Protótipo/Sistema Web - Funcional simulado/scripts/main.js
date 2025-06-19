@@ -4,25 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Aguarda todos os scripts carregarem
   setTimeout(() => {
-    // Verifica se as classes estão disponíveis
-    const DataManager = window.DataManager || null
-    const ModalManager = window.ModalManager || null
-    const UIManager = window.UIManager || null
+    // Inicializa os gerenciadores
+    window.dataManager = new DataManager()
+    window.modalManager = new ModalManager()
+    window.uiManager = new UIManager()
 
-    if (DataManager) {
-      window.dataManager = new DataManager()
-      console.log("Data Manager inicializado")
-    }
-
-    if (ModalManager) {
-      window.modalManager = new ModalManager()
-      console.log("Modal Manager inicializado")
-    }
-
-    if (UIManager) {
-      window.uiManager = new UIManager()
-      console.log("UI Manager inicializado")
-    }
+    console.log("Todos os gerenciadores inicializados")
 
     // Adiciona event listeners globais
     setupGlobalEventListeners()
@@ -41,15 +28,6 @@ function setupGlobalEventListeners() {
       const osItem = e.target.closest(".os-item")
       const osNumber = osItem.querySelector(".os-number").textContent
       window.modalManager.showOSDetails(osNumber)
-    }
-  })
-
-  // Event listener para seleção de medidores
-  document.addEventListener("click", (e) => {
-    if (e.target.closest(".meter-item")) {
-      const meterItems = Array.from(document.querySelectorAll(".meter-item"))
-      const clickedIndex = meterItems.indexOf(e.target.closest(".meter-item"))
-      window.uiManager.selectMeter(clickedIndex + 1)
     }
   })
 }
@@ -89,7 +67,6 @@ window.utils = {
   formatAmount: (amount) => `${amount.toFixed(2)}L`,
 
   exportToCSV: function (data, filename) {
-    // Função para exportar dados para CSV
     const csv = this.convertToCSV(data)
     const blob = new Blob([csv], { type: "text/csv" })
     const url = window.URL.createObjectURL(blob)
