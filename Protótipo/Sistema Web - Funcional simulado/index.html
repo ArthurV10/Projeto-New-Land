@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./asset/logo_toyota.png" type="image/x-icon">
     <title>Toyota New Land - Sistema de Combustível</title>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-content">
-            <h1>TOYOTA NEW LAND</h1>
+            
+            <h1>
+                <img src="asset/logo_toyota.png" style="width: 10%;">
+                TOYOTA NEW LAND</h1>
             <div class="header-info">
                 <span>Matrix System</span>
                 <span id="current-time">19/06/2025, 09:35:08</span>
@@ -81,9 +85,9 @@
                         <div class="meter-icon">⛽</div>
                         <div class="meter-info">
                             <div class="meter-name">MEDIDOR 05</div>
-                            <div class="meter-status-text">Dispensando</div>
+                            <div class="meter-status-text">Parado</div>
                         </div>
-                        <div class="status-dot dispensing"></div>
+                        <div class="status-dot stopped"></div>
                     </div>
                 </button>
 
@@ -184,158 +188,132 @@
                     
                     <div class="card-content">
                         <div class="realtime-list">
-                            <!-- Medidor 01 -->
-                            <div class="realtime-item">
-                                <div class="realtime-header">
-                                    <div class="realtime-meter-name">
-                                        <div class="status-dot stopped"></div>
-                                        <span>MEDIDOR 01</span>
-                                    </div>
-                                    <div class="realtime-status stopped">Parado</div>
-                                </div>
-                                
-                                <div class="realtime-os-info">
-                                    <div class="os-line">OS 487759 - João Silva</div>
-                                    <div class="os-oil">5w30</div>
-                                </div>
-                                
-                                <div class="realtime-progress">
-                                    <div class="progress-info">
-                                        <span>Progresso:</span>
-                                        <span>0.00L / 4.5L</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 0%"></div>
-                                    </div>
-                                </div>
-                                
-                                <div class="realtime-amount">
-                                    <div class="realtime-amount-value">0.00 L</div>
-                                    <div class="realtime-amount-status">Aguardando</div>
-                                </div>
-                            </div>
+    <!-- Medidor 01 -->
+    <div class="realtime-item">
+        <div class="realtime-header">
+            <div class="realtime-meter-name">
+                <div class="status-dot stopped"></div>
+                <span>MEDIDOR 01</span>
+            </div>
+            <div class="realtime-status stopped">Parado</div>
+        </div>
+        
+        <div class="no-os">Nenhuma OS vinculada</div>
+        
+        <div class="realtime-amount">
+            <div class="realtime-amount-value">0.00 L</div>
+            <div class="realtime-amount-status">Aguardando</div>
+        </div>
+    </div>
 
-                            <!-- Medidor 02 -->
-                            <div class="realtime-item">
-                                <div class="realtime-header">
-                                    <div class="realtime-meter-name">
-                                        <div class="status-dot stopped"></div>
-                                        <span>MEDIDOR 02</span>
-                                    </div>
-                                    <div class="realtime-status stopped">Parado</div>
-                                </div>
-                                
-                                <div class="no-os">Nenhuma OS vinculada</div>
-                                
-                                <div class="realtime-amount">
-                                    <div class="realtime-amount-value">0.00 L</div>
-                                    <div class="realtime-amount-status">Aguardando</div>
-                                </div>
-                            </div>
+    <!-- Medidor 02 -->
+    <div class="realtime-item">
+        <div class="realtime-header">
+            <div class="realtime-meter-name">
+                <div class="status-dot stopped"></div>
+                <span>MEDIDOR 02</span>
+            </div>
+            <div class="realtime-status stopped">Parado</div>
+        </div>
+        
+        <div class="no-os">Nenhuma OS vinculada</div>
+        
+        <div class="realtime-amount">
+            <div class="realtime-amount-value">0.00 L</div>
+            <div class="realtime-amount-status">Aguardando</div>
+        </div>
+    </div>
 
-                            <!-- Medidor 03 -->
-                            <div class="realtime-item">
-                                <div class="realtime-header">
-                                    <div class="realtime-meter-name">
-                                        <div class="status-dot stopped"></div>
-                                        <span>MEDIDOR 03</span>
-                                    </div>
-                                    <div class="realtime-status stopped">Parado</div>
-                                </div>
-                                
-                                <div class="no-os">Nenhuma OS vinculada</div>
-                                
-                                <div class="realtime-amount">
-                                    <div class="realtime-amount-value">0.00 L</div>
-                                    <div class="realtime-amount-status">Aguardando</div>
-                                </div>
-                            </div>
+    <!-- Medidor 03 -->
+    <div class="realtime-item">
+        <div class="realtime-header">
+            <div class="realtime-meter-name">
+                <div class="status-dot stopped"></div>
+                <span>MEDIDOR 03</span>
+            </div>
+            <div class="realtime-status stopped">Parado</div>
+        </div>
+        
+        <div class="no-os">Nenhuma OS vinculada</div>
+        
+        <div class="realtime-amount">
+            <div class="realtime-amount-value">0.00 L</div>
+            <div class="realtime-amount-status">Aguardando</div>
+        </div>
+    </div>
 
-                            <!-- Medidor 04 -->
-                            <div class="realtime-item">
-                                <div class="realtime-header">
-                                    <div class="realtime-meter-name">
-                                        <div class="status-dot stopped"></div>
-                                        <span>MEDIDOR 04</span>
-                                    </div>
-                                    <div class="realtime-status stopped">Parado</div>
-                                </div>
-                                
-                                <div class="no-os">Nenhuma OS vinculada</div>
-                                
-                                <div class="realtime-amount">
-                                    <div class="realtime-amount-value">0.00 L</div>
-                                    <div class="realtime-amount-status">Aguardando</div>
-                                </div>
-                            </div>
+    <!-- Medidor 04 -->
+    <div class="realtime-item">
+        <div class="realtime-header">
+            <div class="realtime-meter-name">
+                <div class="status-dot stopped"></div>
+                <span>MEDIDOR 04</span>
+            </div>
+            <div class="realtime-status stopped">Parado</div>
+        </div>
+        
+        <div class="no-os">Nenhuma OS vinculada</div>
+        
+        <div class="realtime-amount">
+            <div class="realtime-amount-value">0.00 L</div>
+            <div class="realtime-amount-status">Aguardando</div>
+        </div>
+    </div>
 
-                            <!-- Medidor 05 - Dispensando -->
-                            <div class="realtime-item">
-                                <div class="realtime-header">
-                                    <div class="realtime-meter-name">
-                                        <div class="status-dot dispensing"></div>
-                                        <span>MEDIDOR 05</span>
-                                    </div>
-                                    <div class="realtime-status dispensing">Dispensando</div>
-                                </div>
-                                
-                                <div class="realtime-os-info">
-                                    <div class="os-line">OS 487763 - Carlos Mendes</div>
-                                    <div class="os-oil">5w30</div>
-                                </div>
-                                
-                                <div class="realtime-progress">
-                                    <div class="progress-info">
-                                        <span>Progresso:</span>
-                                        <span>2.34L / 4.8L</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 48.75%"></div>
-                                    </div>
-                                </div>
-                                
-                                <div class="realtime-amount">
-                                    <div class="realtime-amount-value dispensing">2.34 L</div>
-                                    <div class="realtime-amount-status">Dispensando...</div>
-                                </div>
-                            </div>
+    <!-- Medidor 05 -->
+    <div class="realtime-item">
+        <div class="realtime-header">
+            <div class="realtime-meter-name">
+                <div class="status-dot stopped"></div>
+                <span>MEDIDOR 05</span>
+            </div>
+            <div class="realtime-status stopped">Parado</div>
+        </div>
+        
+        <div class="no-os">Nenhuma OS vinculada</div>
+        
+        <div class="realtime-amount">
+            <div class="realtime-amount-value">0.00 L</div>
+            <div class="realtime-amount-status">Aguardando</div>
+        </div>
+    </div>
 
-                            <!-- Medidor 06 -->
-                            <div class="realtime-item">
-                                <div class="realtime-header">
-                                    <div class="realtime-meter-name">
-                                        <div class="status-dot stopped"></div>
-                                        <span>MEDIDOR 06</span>
-                                    </div>
-                                    <div class="realtime-status stopped">Parado</div>
-                                </div>
-                                
-                                <div class="no-os">Nenhuma OS vinculada</div>
-                                
-                                <div class="realtime-amount">
-                                    <div class="realtime-amount-value">0.00 L</div>
-                                    <div class="realtime-amount-status">Aguardando</div>
-                                </div>
-                            </div>
+    <!-- Medidor 06 -->
+    <div class="realtime-item">
+        <div class="realtime-header">
+            <div class="realtime-meter-name">
+                <div class="status-dot stopped"></div>
+                <span>MEDIDOR 06</span>
+            </div>
+            <div class="realtime-status stopped">Parado</div>
+        </div>
+        
+        <div class="no-os">Nenhuma OS vinculada</div>
+        
+        <div class="realtime-amount">
+            <div class="realtime-amount-value">0.00 L</div>
+            <div class="realtime-amount-status">Aguardando</div>
+        </div>
+    </div>
 
-                            <!-- Medidor 07 -->
-                            <div class="realtime-item">
-                                <div class="realtime-header">
-                                    <div class="realtime-meter-name">
-                                        <div class="status-dot maintenance"></div>
-                                        <span>MEDIDOR 07</span>
-                                    </div>
-                                    <div class="realtime-status maintenance">Manutenção</div>
-                                </div>
-                                
-                                <div class="no-os">Nenhuma OS vinculada</div>
-                                
-                                <div class="realtime-amount">
-                                    <div class="realtime-amount-value">0.00 L</div>
-                                    <div class="realtime-amount-status">Aguardando</div>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Medidor 07 -->
+    <div class="realtime-item">
+        <div class="realtime-header">
+            <div class="realtime-meter-name">
+                <div class="status-dot maintenance"></div>
+                <span>MEDIDOR 07</span>
+            </div>
+            <div class="realtime-status maintenance">Manutenção</div>
+        </div>
+        
+        <div class="no-os">Nenhuma OS vinculada</div>
+        
+        <div class="realtime-amount">
+            <div class="realtime-amount-value">0.00 L</div>
+            <div class="realtime-amount-status">Aguardando</div>
+        </div>
+    </div>
+</div>
                     </div>
                 </div>
             </div>
@@ -538,5 +516,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Scripts JavaScript - Carregados na ordem correta -->
+    <script src="scripts/data-manager.js"></script>
+    <script src="scripts/modal-manager.js"></script>
+    <script src="scripts/ui-manager.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
